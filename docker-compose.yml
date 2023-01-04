@@ -1,0 +1,77 @@
+version: "3.9"
+services:
+  rodoviariaonline_db:
+    container_name: rodoviariaonline_db
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: rodoviariaonline
+      MYSQL_USER: rodoviariaonline
+      MYSQL_PASSWORD: rodoviariaonline
+      MYSQL_ROOT_HOST: "%"
+    ports:
+      - "3306:3306"
+    expose:
+      - 3306
+    volumes:
+      - ./db/data:/var/lib/mysql
+    networks:
+      - rodoviariaonline
+
+  rodoviariaonline_composer:
+    container_name: rodoviariaonline_composer
+    image: composer:latest
+    volumes:
+      - ./api:/app
+    working_dir: /app
+    command: composer install
+
+  rodoviariaonline_php:
+    container_name: rodoviariaonline_php
+    build:
+      context: ./api
+      dockerfile: ./Dockerfile
+    restart: unless-stopped
+    volumes:
+      - ./api:/var/www/html
+    networks:
+      - rodoviariaonline
+    depends_on:
+      - rodoviariaonline_composer
+
+  rodoviariaonline_api:
+    container_name: rodoviariaonline_api
+    image: nginx:latest
+    restart: unless-stopped
+    ports:
+      - "8000:80"
+    volumes:
+      - ./api:/var/www/html
+      - ./infra/nginx/api.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - rodoviariaonline_php
+      - rodoviariaonline_db
+    links:
+      - rodoviariaonline_php
+      - rodoviariaonline_db
+    networks:
+      - rodoviariaonline
+
+  rodoviariaonline_app:
+    container_name: rodoviariaonline_app
+    image: nginx:latest
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./app:/var/www/html
+      - ./infra/nginx/app.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - rodoviariaonline
+
+networks:
+  rodoviariaonline:
+    name: rodoviariaonline-network
+    driver: bridge

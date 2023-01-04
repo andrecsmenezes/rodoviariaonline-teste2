@@ -1,0 +1,20 @@
+:root{
+  --rol-color1:  #6d6e71;
+  --rol-color2:  #f2ec50;
+  --rol-color3:  #5d5b53;
+  --rol-color4:  #f2f1e3;
+  --rol-color5:  #d9cd17;
+  --rol-color6:  #d9cd17;
+  --rol-color7:  #acabac;
+  --rol-color8:  #9c9222;
+  --rol-color9:  #a6a438;
+  --rol-color10: #8c7c14;
+}
+
+body {
+  background: var(--rol-color4);
+}
+
+#page-content > div {
+  box-shadow: 0px 25px 20px -20px rgba(0, 0, 0, 0.45);
+}
