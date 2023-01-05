@@ -41,19 +41,19 @@ docker compose up
 
 ## API
 
-A url base para acesso a API é `http:localhost:8000`
+A url base para acesso a API é `http://localhost:8000`
 
-| Endpoint | Método | Descrição |
-|----------|--------| --- |
-| /        | GET    | Recebe uma mensagem inicial caso esteja logado |
-| /login | POST | Recebe como parâmetro `username` e `password`, ambos do tipo `string` sendo o `username` o e-mail de acesso. |
-| /migrate | GET | Faz a migração caso ainda não tenha sido realizada |
-| /migration-status | GET | Verifica se a migração já foi realizada |
-| /status | GET | Verifica se a API está ativa |
+| Endpoint | Método | Descrição                                                                                                                      |
+|----------|--------|--------------------------------------------------------------------------------------------------------------------------------|
+| /        | GET    | Recebe uma mensagem inicial caso esteja logado. Deve ser utilizado `Authentication Bearer` com o token gerado na rota `/login` |
+| /login | POST | Recebe como parâmetro `username` e `password`, ambos do tipo `string` sendo o `username` o e-mail de acesso.                   |
+| /migrate | GET | Faz a migração caso ainda não tenha sido realizada                                                                             |
+| /migration-status | GET | Verifica se a migração já foi realizada                                                                                        |
+| /status | GET | Verifica se a API está ativa                                                                                                   |
 
 ## APP
 
-A url do APP é `http:localhost`
+A url do APP é `http://localhost`
 
 - O APP foi construido com jQuery mas foi utilizado o conceito de SPA, dessa forma existe apenas um arquivo para controlar.
 - Para acessar o login após fazer a migração basta usar o seguinte usuário:
