@@ -51,6 +51,8 @@ A url base para acesso a API é `http://localhost:8000`
 | /migration-status | GET | Verifica se a migração já foi realizada                                                                                        |
 | /status | GET | Verifica se a API está ativa                                                                                                   |
 
+Neste repositório é possível encontrar o arquivo `./Rodoviaria Online.postman_collection.json` para instalação no Postman. Para que o mesmo funcione gere como variável de ambiente: `base_url -> http://localhost:8000`
+
 ## APP
 
 A url do APP é `http://localhost`
