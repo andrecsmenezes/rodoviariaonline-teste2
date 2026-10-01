@@ -1,3 +1,9 @@
+<!-- PORTFOLIO-HISTORICAL-CONTEXT -->
+> [!NOTE]
+> **Historical technical assessment.** This repository was created for a 2023 technical assessment and is preserved as historical work. It should not be read as a current reference architecture. [See the current engineering portfolio](https://github.com/andrecsmenezes).
+
+---
+
 Olá!
 
 Obrigado por essa oportunidade de participar do teste Rodoviária Online - Teste 2.
